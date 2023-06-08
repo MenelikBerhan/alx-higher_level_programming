@@ -1,2 +1,2 @@
-#!/usr/bin/python3
-exit("#pythoniscool")
+#!/bin/bash
+python3 -c "import os; os.write(1, b'#pythoniscool\n')"
