@@ -46,5 +46,5 @@ int is_palindrome(listint_t **head)
 		len++;
 	}
 
-	return (helper(head, len));
+	return (is_palindrome_helper(head, len));
 }
