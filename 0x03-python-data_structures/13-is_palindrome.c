@@ -2,6 +2,29 @@
 #include <stdio.h>
 
 /**
+ * is_palindrome - checks if a linked list pointed by head is a plindrome
+ * @head: a pointer to a linked list
+ *
+ * Return: 0 if list is not a palindrome, 1 if it is a palindrome
+*/
+int is_palindrome(listint_t **head)
+{
+	listint_t *temp;
+	int len = 0;
+
+	if (!head || !(*head) || !(*head)->next)
+		return (1);
+	temp = *head;
+	while (temp)
+	{
+		temp = temp->next;
+		len++;
+	}
+
+	return (is_palindrome_helper(head, len));
+}
+
+/**
  * is_palindrome_helper - checks if a list is palindrome
  * @head: pointer to a linked list
  * @len: number of nodes in the list
@@ -25,26 +48,4 @@ int is_palindrome_helper(listint_t **head, int len)
 	}
 
 	return (1);
-}
-/**
- * is_palindrome - checks if a linked list pointed by head is a plindrome
- * @head: a pointer to a linked list
- *
- * Return: 0 if list is not a palindrome, 1 if it is a palindrome
-*/
-int is_palindrome(listint_t **head)
-{
-	listint_t *temp;
-	int len = 0;
-
-	if (!head || !(*head) || !(*head)->next)
-		return (1);
-	temp = *head;
-	while (temp)
-	{
-		temp = temp->next;
-		len++;
-	}
-
-	return (is_palindrome_helper(head, len));
 }
