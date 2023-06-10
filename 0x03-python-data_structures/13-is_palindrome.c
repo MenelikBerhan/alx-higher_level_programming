@@ -2,26 +2,29 @@
 #include <stdio.h>
 
 /**
- * is_palindrome_helper - checks the n field value of the first
- *		and last node of a linked list
- * @head: a linked list
- * @len: length of linked list
+ * is_palindrome_helper - checks if a list is palindrome
+ * @head: pointer to a linked list
+ * @len: number of nodes in the list
  *
- * Return: 1 if first and last node n values are equal, or 0 if not
+ * Return: 1 if list is palidrome, or 0 if not.
 */
-int is_palindrome_helper(listint_t *head, int len)
+int is_palindrome_helper(listint_t **head, int len)
 {
 	listint_t *temp;
-	int i;
+	int i, list[len];
 
-	if (!head || !head->next || len == 1 || len == 0)
-		return (1);
-	temp = head;
-	for (i = 1; i < len; i++)
-		temp = temp->next;
-	if (head->n != temp->n)
-		return (0);
-	return (is_palindrome_helper(head->next, len - 2));
+	for (i = 0, temp = *head; i < len; i++, temp = temp->next)
+		list[i] = temp->n;
+
+	for (i = 0; i < len / 2; i++)
+	{
+		if (list[i] != list[len - 1 - i])
+		{
+			return (0);
+		}
+	}
+
+	return (1);
 }
 /**
  * is_palindrome - checks if a linked list pointed by head is a plindrome
@@ -43,5 +46,5 @@ int is_palindrome(listint_t **head)
 		len++;
 	}
 
-	return (is_palindrome_helper(*head, len));
+	return (helper(head, len));
 }
