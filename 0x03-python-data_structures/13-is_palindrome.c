@@ -1,5 +1,4 @@
 #include "lists.h"
-#include <stdio.h>
 
 /**
  * is_palindrome - checks if a linked list pointed by head is a plindrome
@@ -34,7 +33,7 @@ int is_palindrome(listint_t **head)
 int is_palindrome_helper(listint_t **head, int len)
 {
 	listint_t *temp;
-	int i, list[len];
+	int i, list[1024];
 
 	for (i = 0, temp = *head; i < len; i++, temp = temp->next)
 		list[i] = temp->n;
