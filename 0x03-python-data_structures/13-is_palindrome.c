@@ -1,23 +1,5 @@
 #include "lists.h"
 #include <stdio.h>
-
-
-/**
- * get_element - finds the element at index index in a linked list list
- * @head: a linked list
- * @index: index of node to be found
- *
- * Return: a pointer to the node at index
-*/
-listint_t *get_element(listint_t *head, int index)
-{
-	int i;
-
-	for (i = 0; i < index; i++)
-		head = head->next;
-	return (head);
-}
-
 /**
  * is_palindrome - checks if a linked list pointed by head is a plindrome
  * @head: a pointer to a linked list
@@ -27,9 +9,9 @@ listint_t *get_element(listint_t *head, int index)
 int is_palindrome(listint_t **head)
 {
 	listint_t *temp;
-	int i, len = 0;
+	int i, len = 0, *list;
 
-	if (!head || !(*head))
+	if (!head || !(*head) || !(*head)->next)
 		return (1);
 	temp = *head;
 	while (temp)
@@ -37,10 +19,24 @@ int is_palindrome(listint_t **head)
 		temp = temp->next;
 		len++;
 	}
+	list = malloc(sizeof(int) * len);
+	if (!list)
+	{
+		perror("malloc failure");
+		exit(98);
+	}
+	for (i = 0, temp = *head; i < len; i++, temp = temp->next)
+		list[i] = temp->n;
 
-	for (i = 0, temp = *head; i < len / 2; i++, temp = temp->next)
-		if (temp->n != (get_element(*head, len - 1 - i))->n)
+	for (i = 0; i < len / 2; i++)
+	{
+		if (list[i] != list[len - 1 - i])
+		{
+			free(list);
 			return (0);
+		}
+	}
+	free(list);
 
 	return (1);
 }
