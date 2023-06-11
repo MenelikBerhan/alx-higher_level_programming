@@ -11,7 +11,7 @@ void print_python_list_info(PyObject *p)
 	static int alloc_ed = -1;
 	static PyObject *temp;
 
-	if (!p || !PyList_Check(p))
+	if (!p || p == Py_None || !PyList_Check(p))
 		return;
 	len = PyList_Size(p);
 	if (alloc_ed == -1 || p != temp)
