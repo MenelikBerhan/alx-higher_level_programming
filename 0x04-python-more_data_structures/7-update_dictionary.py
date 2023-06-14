@@ -11,6 +11,6 @@ def update_dictionary(a_dictionary, key, value):
     Returns: the updated dictionary
     '''
     if not a_dictionary or not key:
-        return
+        return (a_dictionary)
     a_dictionary[key] = value
     return (a_dictionary)
