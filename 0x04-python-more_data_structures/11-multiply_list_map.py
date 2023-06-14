@@ -8,6 +8,4 @@ def multiply_list_map(my_list=[], number=0):
 
     Returns: the newly created list
     '''
-    if not my_list:
-        return (None)
     return (list(map(lambda x: 2 * x, my_list)))
