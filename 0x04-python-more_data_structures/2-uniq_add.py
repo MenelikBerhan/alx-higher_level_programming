@@ -8,5 +8,5 @@ def uniq_add(my_list=[]):
     Returns: the sum of unique elements
     '''
     if not my_list:
-        return (None)
+        return (0)
     return (sum(set(my_list)))
