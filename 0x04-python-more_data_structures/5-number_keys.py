@@ -8,5 +8,5 @@ def number_keys(a_dictionary):
     Returns: the number of keys in a_dictionary
     '''
     if not a_dictionary:
-        return (None)
+        return (0)
     return (len(dict.keys(a_dictionary)))
