@@ -3,8 +3,7 @@ def roman_to_int(roman_string):
     '''Converts a Roman numeral to integer
 
     Args:
-        my_list: a list used to create the new list
-        number: integer to multiply values of my_list
+        roman_string: roman number in string format
 
     Returns: an integer value of the Roman numeral
     '''
