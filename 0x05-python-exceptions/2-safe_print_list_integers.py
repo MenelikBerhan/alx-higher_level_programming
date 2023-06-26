@@ -7,8 +7,8 @@ def safe_print_list_integers(my_list=[], x=0):
         x: no. of elements to access in my_list list
     Returns: the actually printed number of integer elements
     '''
-    # if not my_list:
-    #     return 0
+    if not my_list:
+        return 0
     i, j = 0, 0
     while i < x:
         try:
