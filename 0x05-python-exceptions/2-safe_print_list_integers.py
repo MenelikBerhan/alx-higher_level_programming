@@ -10,13 +10,14 @@ def safe_print_list_integers(my_list=[], x=0):
     if not my_list or x == 0:
         print("")
         return 0
-    try:
-        for i in range(0, x):
+    i, j = 0, 0
+    while i < x:
+        try:
             print("{:d}".format(my_list[i]), end="\n" if i == x - 1 else "")
-        return i + 1
-    except (ValueError, TypeError) as ex:
-        if (i < x - 1):
-            return (i + safe_print_list_integers(my_list[i + 1:], x - i - 1))
-        else:
-            print("")
-            return i
+            i += 1
+        except (ValueError, TypeError):
+            if i == x - 1:
+                print("")
+            j += 1
+            i += 1
+    return i - j
