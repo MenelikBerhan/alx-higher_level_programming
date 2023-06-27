@@ -8,7 +8,6 @@
 */
 void print_python_float(PyObject *p)
 {
-	/* int size, i; */
 	char *float_as_str;
 
 	fflush(stdout);
@@ -45,7 +44,6 @@ void print_python_bytes(PyObject *p)
 	}
 	len = PyBytes_Size(p);
 	printf("  size: %d\n", len);
-	/* str = (char *)(void *)((PyBytesObject *)(p))->ob_sval; */
 	printf("  trying string: %s\n", ((PyBytesObject *)(p))->ob_sval);
 	printf("  first %d bytes: ", len > 9 ? 10 : len + 1);
 	for (i = 0; i < 10 && i <= len; i++)
