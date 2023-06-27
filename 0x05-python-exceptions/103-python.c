@@ -11,8 +11,6 @@ void print_python_float(PyObject *p)
 	int size, i;
 	char *float_as_str;
 
-	if (!p || p == Py_None)
-		return;
 	printf("[.] float object info\n");
 	fflush(stdout);
 	if (!PyFloat_CheckExact(p))
@@ -47,8 +45,6 @@ void print_python_bytes(PyObject *p)
 	int i, len;
 	char *str, end;
 
-	if (!p || p == Py_None)
-		return;
 	printf("[.] bytes object info\n");
 	fflush(stdout);
 	if (!PyBytes_CheckExact(p))
@@ -87,8 +83,6 @@ void print_python_list(PyObject *p)
 	int i, len;
 	const char *type;
 
-	if (!p || p == Py_None)
-		return;
 	printf("[*] Python list info\n");
 	fflush(stdout);
 	if (!PyList_CheckExact(p))
