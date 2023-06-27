@@ -73,7 +73,7 @@ a class `Square` that defines a square by: (based on `5-square.py`)
 - Public instance method: `def area(self):` that returns the current square area
 - Public instance method: `def my_print(self):` that prints in `stdout` the square with the character `#`:
   - if `size` is equal to `0`, print an empty line
-  - `position` should be use by using space - __Don’t fill lines by spaces__ `when position[1] > 0`
+  - `position` should be use by using space
 
 ## 100-singly_linked_list.py
 
