@@ -41,7 +41,7 @@ void print_python_float(PyObject *p)
 void print_python_bytes(PyObject *p)
 {
 	int i, len;
-	char *str, end;
+	char end;
 
 	fflush(stdout);
 	printf("[.] bytes object info\n");
@@ -61,7 +61,7 @@ void print_python_bytes(PyObject *p)
 			end = '\n';
 		else
 			end = ' ';
-		printf("%.2x%c", str[i], end);
+		printf("%.2x%c", ((PyBytesObject *)(p))->ob_sval[i], end);
 	}
 
 }
