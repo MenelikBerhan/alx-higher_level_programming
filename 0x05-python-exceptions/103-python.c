@@ -11,12 +11,11 @@ void print_python_float(PyObject *p)
 	int size, i;
 	char *float_as_str;
 
-	printf("[.] float object info\n");
 	fflush(stdout);
+	printf("[.] float object info\n");
 	if (!PyFloat_CheckExact(p))
 	{
 		printf("  [ERROR] Invalid Float Object\n");
-		fflush(stdout);
 		return;
 	}
 	size = snprintf(NULL, 0, "%.15lf", (PyFloat_AsDouble(p)));
@@ -30,7 +29,6 @@ void print_python_float(PyObject *p)
 			float_as_str[i] = 0;
 	}
 	printf("  value: %s\n", float_as_str);
-	fflush(stdout);
 	free(float_as_str);
 }
 
@@ -45,22 +43,18 @@ void print_python_bytes(PyObject *p)
 	int i, len;
 	char *str, end;
 
-	printf("[.] bytes object info\n");
 	fflush(stdout);
+	printf("[.] bytes object info\n");
 	if (!PyBytes_CheckExact(p))
 	{
 		printf("  [ERROR] Invalid Bytes Object\n");
-		fflush(stdout);
 		return;
 	}
 	len = PyBytes_Size(p);
 	printf("  size: %d\n", len);
-	fflush(stdout);
 	str = (char *)(void *)((PyBytesObject *)(p))->ob_sval;
 	printf("  trying string: %s\n", str);
-	fflush(stdout);
 	printf("  first %d bytes: ", len > 9 ? 10 : len + 1);
-	fflush(stdout);
 	for (i = 0; i < 10 && i <= len; i++)
 	{
 		if (i == 9 || i == len)
@@ -68,7 +62,6 @@ void print_python_bytes(PyObject *p)
 		else
 			end = ' ';
 		printf("%.2x%c", str[i], end);
-		fflush(stdout);
 	}
 
 }
@@ -83,28 +76,23 @@ void print_python_list(PyObject *p)
 	int i, len;
 	const char *type;
 
-	printf("[*] Python list info\n");
 	fflush(stdout);
+	printf("[*] Python list info\n");
 	if (!PyList_CheckExact(p))
 	{
 		printf("  [ERROR] Invalid List Object\n");
-		fflush(stdout);
 		return;
 	}
 	len = PyList_GET_SIZE(p);
 	printf("[*] Size of the Python List = %d\n", len);
-	fflush(stdout);
 	printf("[*] Allocated = %ld\n", ((PyListObject *)p)->allocated);
-	fflush(stdout);
 	for (i = 0; i < len; i++)
 	{
 		type = PyList_GET_ITEM(p, i)->ob_type->tp_name;
 		printf("Element %d: %s\n", i, type);
-		fflush(stdout);
 		if (!strncmp(type, "bytes", 5))
 			print_python_bytes(PyList_GET_ITEM(p, i));
 		if (!strncmp(type, "float", 5))
 			print_python_float(PyList_GET_ITEM(p, i));
-		fflush(stdout);
 	}
 }
