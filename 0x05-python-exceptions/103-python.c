@@ -1,4 +1,4 @@
-#include <python3.8/Python.h>
+#include <Python.h>
 #include <stdio.h>
 
 /**
@@ -21,7 +21,7 @@ void print_python_float(PyObject *p)
 	float_as_str = PyOS_double_to_string(((PyFloatObject *)p)->ob_fval, 'r', 0,
 			Py_DTSF_ADD_DOT_0, NULL);
 	printf("  value: %s\n", float_as_str);
-	free(float_as_str);
+	PyMem_Free(float_as_str);
 }
 
 
