@@ -81,13 +81,11 @@ class Square():
                 ##
                 ##
         """
+        if self.__size == 0:
+            print()
+            return
         for y in range(0, self.__position[1]):
             print()
-        if self.__size == 0:
-            if self.__position[1] == 0:
-                print()
-            return
-
         for row in range(0, self.__size):
             for x in range(0, self.__position[0]):
                 print(" ", end="")
