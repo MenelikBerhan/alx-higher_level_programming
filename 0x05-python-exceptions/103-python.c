@@ -8,7 +8,7 @@
 */
 void print_python_float(PyObject *p)
 {
-	int size, i;
+	/* int size, i; */
 	char *float_as_str;
 
 	fflush(stdout);
@@ -18,16 +18,9 @@ void print_python_float(PyObject *p)
 		printf("  [ERROR] Invalid Float Object\n");
 		return;
 	}
-	size = snprintf(NULL, 0, "%.15lf", (PyFloat_AsDouble(p)));
-	float_as_str = malloc(size + 1);
-	sprintf(float_as_str, "%.15lf", (PyFloat_AsDouble(p)));
-	for (i = size; i > 0; i--)
-	{
-		if (float_as_str[i] == '.' || float_as_str[i - 1] == '.')
-			break;
-		if (float_as_str[i] == '0')
-			float_as_str[i] = 0;
-	}
+
+	float_as_str = PyOS_double_to_string(((PyFloatObject *)p)->ob_fval, 'r', 0,
+			Py_DTSF_ADD_DOT_0, NULL);
 	printf("  value: %s\n", float_as_str);
 	free(float_as_str);
 }
