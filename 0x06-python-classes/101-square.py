@@ -96,8 +96,8 @@ class Square():
         """`str`: Returns a string representation of a `Square`"""
         printable = ""
         if self.__size == 0:
-            printable += '\n'
-            return
+            # printable += '\n'
+            return printable
         for y in range(0, self.__position[1]):
             printable += '\n'
         for row in range(0, self.__size):
