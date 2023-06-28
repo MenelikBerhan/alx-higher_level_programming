@@ -8,7 +8,7 @@ class MagicClass():
     Attributes:
         _MagicClass__radius (`int` or `float`): radius of the cirlce\n
     """
-    def __init__(self, radius):
+    def __init__(self, radius=0):
         """Initializes a `MagicClass` cirlce with radius\n
         Args:
             radius (`int` or `float`): radius of the cirlce\n
@@ -19,6 +19,7 @@ class MagicClass():
 
         if (type(radius) is not int) and (type(radius) is not float):
             raise TypeError('radius must be a number')
+
         self._MagicClass__radius = radius
 
     def area(self):
