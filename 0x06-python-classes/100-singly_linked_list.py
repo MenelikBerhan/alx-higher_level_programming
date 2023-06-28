@@ -80,7 +80,7 @@ class SinglyLinkedList():
         i = 0
         for node in self.__head:
             if i < len(self.__head) - 1:
-                node.next_node = self.__head[self.__head.index(node) + 1]
+                node.next_node = self.__head[i + 1]
             i += 1
 
     def __str__(self):
