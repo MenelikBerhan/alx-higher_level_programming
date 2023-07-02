@@ -18,7 +18,6 @@ def text_indentation(text):
     """
     if type(text) is not str:
         raise TypeError("text must be a string")
-    printable = ""
     text_len = len(str(text))
     index = 0
     while index < text_len:
