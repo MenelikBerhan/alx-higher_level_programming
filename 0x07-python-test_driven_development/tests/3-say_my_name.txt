@@ -1,0 +1,58 @@
+============================
+The ``3-say_my_name`` module
+============================
+
+Using ``say_my_name``
+-------------------
+Prototype: ``def say_my_name(first_name, last_name=""):``
+
+This is a test file in reStructuredText format.  First import
+``say_my_name`` from the ``3-say_my_name`` module:
+
+    >>> say_my_name = __import__('3-say_my_name').say_my_name
+
+Now test it for various cases:
+Proper arguments
+================
+    >>> say_my_name("John", "Smith")
+    My name is John Smith
+
+No last name
+============
+    >>> say_my_name("John")
+    My name is John 
+
+No argument
+===========
+    >>> say_my_name() #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+        ...
+    TypeError: say_my_name() missing...
+
+First name not string
+=====================
+    >>> say_my_name(5, 'John')
+    Traceback (most recent call last):
+        ...
+    TypeError: first_name must be a string
+
+Last name not string
+=====================
+    >>> say_my_name('John', 5)
+    Traceback (most recent call last):
+        ...
+    TypeError: last_name must be a string
+
+Empty first name string
+=======================
+    >>> say_my_name("")
+    My name is  
+
+Extra argument
+==============
+    >>> say_my_name("", "", "") #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+        ...
+    TypeError...
+
+    
