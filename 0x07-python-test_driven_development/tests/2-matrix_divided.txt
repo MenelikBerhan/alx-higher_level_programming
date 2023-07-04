@@ -51,9 +51,13 @@ div is equal to 0
 Empty matrix
 ============
     >>> matrix_divided([], 3)
-    []
+    Traceback (most recent call last):
+        ...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
 
 Matrix with Empty lists
 =======================
     >>> matrix_divided([[], []], 3)
-    [[], []]
+    Traceback (most recent call last):
+        ...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats

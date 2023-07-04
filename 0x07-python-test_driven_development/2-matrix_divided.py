@@ -27,7 +27,8 @@ def matrix_divided(matrix, div):
     if type(matrix) is not list:
         raise TypeError(error_msg)
     if len(matrix) == 0:  # ??for empty list or list of empty lists
-        return []
+        # return []
+        raise TypeError(error_msg)
     row_size = len(matrix[0])
     unequal_size = 0
     not_number = 0
@@ -38,6 +39,9 @@ def matrix_divided(matrix, div):
         if not unequal_size and len(row) != row_size:
             unequal_size = 1
 
+    if row_size == 0:  # ??for empty list of lists
+        # return matrix[:]
+        raise TypeError(error_msg)
     if unequal_size:
         raise TypeError("Each row of the matrix must have the same size")
 
@@ -46,7 +50,5 @@ def matrix_divided(matrix, div):
 
     if div == 0:
         raise ZeroDivisionError("division by zero")
-    if row_size == 0:  # ??for empty list of lists
-        return matrix[:]
 
     return [[round(x/div, 2) for x in row] for row in matrix]
