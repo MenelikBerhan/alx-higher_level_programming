@@ -35,6 +35,27 @@ size less than zero
         ...
     ValueError: size must be >= 0
 
+size a float less than zero
+===========================
+    >>> print_square(-1.5)
+    Traceback (most recent call last):
+        ...
+    TypeError: size must be an integer
+
 Size equals zero
 ================
     >>> print_square(0)
+
+Muliple commands
+================
+    >>> print_square(10)
+    ##########
+    ##########
+    ##########
+    ##########
+    ##########
+    ##########
+    ##########
+    ##########
+    ##########
+    ##########
