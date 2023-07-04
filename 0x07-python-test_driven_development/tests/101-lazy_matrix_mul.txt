@@ -1,0 +1,112 @@
+============================
+The ``101-lazy_matrix_mul`` module
+============================
+
+Using ``lazy_matrix_mul``
+-------------------
+Prototype: ``def lazy_matrix_mul(m_a, m_b):``
+
+This is a test file in reStructuredText format.  First import
+``lazy_matrix_mul`` from the ``100-lazy_matrix_mul`` module:
+
+    >>> lazy_matrix_mul = __import__('101-lazy_matrix_mul').lazy_matrix_mul
+
+Now test it for various cases:
+Proper arguments
+================
+    >>> lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]])
+    [[7, 10], [15, 22]]
+    >>> lazy_matrix_mul([[1, 2]], [[3, 4], [5, 6]])
+    [[13, 16]]
+    >>> lazy_matrix_mul([[1, 0, 1], #doctest: +NORMALIZE_WHITESPACE
+    ...             [2, 1, 1],
+    ...             [0, 1, 1],
+    ...             [1, 1, 2]],
+    ...            [[1, 2, 1],
+    ...             [2, 3, 1],
+    ...             [4, 2, 2]])
+    [[5, 4, 3],
+     [8, 9, 5],
+     [6, 5, 3],
+     [11, 9, 6]]
+
+Arguments are not list
+======================
+    >>> lazy_matrix_mul(1, [[1, 2], [3, 4]]) #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ValueError...
+    >>> lazy_matrix_mul([[1, 2], [3, 4]], 5) #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ValueError...
+
+Arguments are not list of lists
+===============================
+    >>> lazy_matrix_mul([1], [[1, 2], [3, 4]]) #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ValueError...
+    >>> lazy_matrix_mul([[1, 2], [3, 4]], [5]) #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ValueError...
+
+Arguments are empty list
+========================
+    >>> lazy_matrix_mul([], [[1, 2], [3, 4]]) #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ValueError...
+    >>> lazy_matrix_mul([[1, 2], [3, 4]], []) #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ValueError...
+
+Arguments are list of empty lists
+=================================
+    >>> lazy_matrix_mul([[]], [[1, 2], [3, 4]]) #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ValueError...
+    >>> lazy_matrix_mul([[1, 2], [3, 4]], [[]]) #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ValueError...
+
+Arguments are list of lists containing a non-number
+===================================================
+    >>> lazy_matrix_mul([[1, '2'], [3, 4]], [[1, 2], [3, '4']]) #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    TypeError...
+    >>> lazy_matrix_mul([[1, 2]], [[3, [4]], ['5', 6]]) #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ValueError...
+
+Arguments not a rectangle
+=========================
+    >>> lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2, 4], [3, 4]]) #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ValueError...
+    >>> lazy_matrix_mul([[], [1, 2], [3, 4]], [[1, 2, 4], [3, 4]]) #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ValueError...
+
+Arguments not compatible
+========================
+    >>> lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4], [5, 6]]) #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ValueError...
+    >>> lazy_matrix_mul([[1, 2, 3], [3, 4, 5]], [[1, 2], [3, 4]]) #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ValueError...
+
+Arguments with multiple edge cases
+==================================
+    >>> lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2, 4], [3, 4], ['5', 6]]) #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ValueError...
+    >>> lazy_matrix_mul([], [[1, 2], [3, 4], ['5', 6]]) #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ValueError...
+    >>> lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2, 4], [3, 4], [5, 6]]) #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ValueError...
+    >>> lazy_matrix_mul([], [[1, 2], [3, 4], "[5, 6]"]) #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ValueError...
+    >>> lazy_matrix_mul("[]", [[1, 2], [3, 4], "[5, 6]"]) #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    ValueError...
