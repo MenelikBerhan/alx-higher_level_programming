@@ -34,8 +34,8 @@ Proper arguments
 Arguments are not list
 ======================
     >>> lazy_matrix_mul(1, [[1, 2], [3, 4]]) #doctest: +ELLIPSIS
-    array([[1, 2],
-           [3, 4]])
+    Traceback (most recent call last):
+    ValueError...
 
 Arguments are not list of lists
 ===============================
