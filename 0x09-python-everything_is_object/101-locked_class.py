@@ -8,10 +8,4 @@ class LockedClass():
     """Class that doesn't allow the user to set
     a new instance attribute except `first_name`"""
 
-    def __setattr__(self, attribute, value):
-        """sets attribute only for `first_name`"""
-        if str(attribute) != "first_name":
-            raise AttributeError("'LockedClass' object has no attribute '{}'"
-                                 .format(attribute))
-        else:
-            self.__dict__[str(attribute)] = value
+    __slots__ = ['first_name']
