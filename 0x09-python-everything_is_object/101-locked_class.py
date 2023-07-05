@@ -10,8 +10,8 @@ class LockedClass():
 
     def __setattr__(self, attribute, value):
         """sets attribute only for `first_name`"""
-        if attribute != "first_name":
+        if str(attribute) != "first_name":
             raise AttributeError("'LockedClass' object has no attribute '{}'"
                                  .format(attribute))
         else:
-            self.__dict__[attribute] = value
+            self.__dict__[str(attribute)] = value
