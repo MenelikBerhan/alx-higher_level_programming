@@ -17,4 +17,4 @@ def lazy_matrix_mul(m_a, m_b):
 
     # return np.dot(m_a, m_b, out=np.array)
 
-    return result
+    return result.tolist()
