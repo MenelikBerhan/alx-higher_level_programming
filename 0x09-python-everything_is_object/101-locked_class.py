@@ -6,7 +6,6 @@ class LockedClass():
 
     def __setattr__(self, attribute, value):
         if attribute != "first_name":
-            print("Cannot set %s" % attribute)
-            raise Exception("Right!")
+            raise AttributeError("Can't set {} attribute".format(attribute))
         else:
             self.__dict__[attribute] = value
