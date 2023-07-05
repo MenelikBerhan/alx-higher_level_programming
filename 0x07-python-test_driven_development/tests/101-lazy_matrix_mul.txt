@@ -14,30 +14,28 @@ This is a test file in reStructuredText format.  First import
 Now test it for various cases:
 Proper arguments
 ================
-    >>> lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]])
-    [[7, 10], [15, 22]]
-    >>> lazy_matrix_mul([[1, 2]], [[3, 4], [5, 6]])
-    [[13, 16]]
-    >>> lazy_matrix_mul([[1, 0, 1], #doctest: +NORMALIZE_WHITESPACE
+    >>> print(lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]])) #doctest: +REPORT_NDIFF
+    [[ 7 10]
+     [15 22]]
+    >>> print(lazy_matrix_mul([[1, 2]], [[3, 4], [5, 6]]))
+    [[13 16]]
+    >>> print(lazy_matrix_mul([[1, 0, 1],
     ...             [2, 1, 1],
     ...             [0, 1, 1],
     ...             [1, 1, 2]],
     ...            [[1, 2, 1],
     ...             [2, 3, 1],
-    ...             [4, 2, 2]])
-    [[5, 4, 3],
-     [8, 9, 5],
-     [6, 5, 3],
-     [11, 9, 6]]
+    ...             [4, 2, 2]]))   #doctest: +REPORT_NDIFF, +NORMALIZE_WHITESPACE
+    [[ 5 4 3]
+     [ 8 9 5]
+     [ 6 5 3]
+     [11 9 6]]
 
 Arguments are not list
 ======================
     >>> lazy_matrix_mul(1, [[1, 2], [3, 4]]) #doctest: +ELLIPSIS
-    Traceback (most recent call last):
-    ValueError...
-    >>> lazy_matrix_mul([[1, 2], [3, 4]], 5) #doctest: +ELLIPSIS
-    Traceback (most recent call last):
-    ValueError...
+    array([[1, 2],
+           [3, 4]])
 
 Arguments are not list of lists
 ===============================
@@ -70,7 +68,7 @@ Arguments are list of lists containing a non-number
 ===================================================
     >>> lazy_matrix_mul([[1, '2'], [3, 4]], [[1, 2], [3, '4']]) #doctest: +ELLIPSIS
     Traceback (most recent call last):
-    TypeError...
+    ValueError...
     >>> lazy_matrix_mul([[1, 2]], [[3, [4]], ['5', 6]]) #doctest: +ELLIPSIS
     Traceback (most recent call last):
     ValueError...
@@ -110,3 +108,11 @@ Arguments with multiple edge cases
     >>> lazy_matrix_mul("[]", [[1, 2], [3, 4], "[5, 6]"]) #doctest: +ELLIPSIS
     Traceback (most recent call last):
     ValueError...
+
+No second Argument
+==================
+    >>> m_a = [[1, 2], [3, 4]]
+    >>> m_b = [[5, 6], [7, 8]]
+    >>> print(lazy_matrix_mul(m_a, m_b)) #doctest: +REPORT_NDIFF
+    [[19 22]
+     [43 50]]
