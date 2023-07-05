@@ -68,7 +68,7 @@ Arguments are list of lists containing a non-number
 ===================================================
     >>> lazy_matrix_mul([[1, '2'], [3, 4]], [[1, 2], [3, '4']]) #doctest: +ELLIPSIS
     Traceback (most recent call last):
-    ValueError...
+    TypeError...
     >>> lazy_matrix_mul([[1, 2]], [[3, [4]], ['5', 6]]) #doctest: +ELLIPSIS
     Traceback (most recent call last):
     ValueError...
@@ -109,10 +109,14 @@ Arguments with multiple edge cases
     Traceback (most recent call last):
     ValueError...
 
+No Arguments
+==================
+    >>> print(lazy_matrix_mul()) #doctest: +REPORT_NDIFF, +ELLIPSIS
+    Traceback (most recent call last):
+    TypeError...
+
 No second Argument
 ==================
-    >>> m_a = [[1, 2], [3, 4]]
-    >>> m_b = [[5, 6], [7, 8]]
-    >>> print(lazy_matrix_mul(m_a, m_b)) #doctest: +REPORT_NDIFF
-    [[19 22]
-     [43 50]]
+    >>> print(lazy_matrix_mul([[1, 2], [3, 4]])) #doctest: +REPORT_NDIFF, +ELLIPSIS
+    Traceback (most recent call last):
+    TypeError...
