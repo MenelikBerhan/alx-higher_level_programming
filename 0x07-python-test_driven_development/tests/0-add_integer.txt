@@ -93,3 +93,10 @@ A ``nan`` not a number argument
     Traceback (most recent call last):
         ...
     ValueError: cannot convert float NaN to integer
+
+Float overflow for infinity
+===========================
+    >>> add_integer(float('inf'), 2)
+    Traceback (most recent call last):
+        ...
+    OverflowError: cannot convert float infinity to integer
