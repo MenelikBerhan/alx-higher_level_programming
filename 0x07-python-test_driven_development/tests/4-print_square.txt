@@ -59,3 +59,9 @@ Muliple commands
     ##########
     ##########
     ##########
+
+No argument
+===========
+    >>> print_square() #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    TypeError...
