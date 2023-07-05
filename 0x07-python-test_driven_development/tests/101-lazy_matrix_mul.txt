@@ -34,8 +34,8 @@ Proper arguments
 Arguments are not list
 ======================
     >>> lazy_matrix_mul(1, [[1, 2], [3, 4]]) #doctest: +ELLIPSIS
-    array([[1, 2],
-           [3, 4]])
+    Traceback (most recent call last):
+    ValueError...
 
 Arguments are not list of lists
 ===============================
@@ -68,7 +68,7 @@ Arguments are list of lists containing a non-number
 ===================================================
     >>> lazy_matrix_mul([[1, '2'], [3, 4]], [[1, 2], [3, '4']]) #doctest: +ELLIPSIS
     Traceback (most recent call last):
-    ValueError...
+    TypeError...
     >>> lazy_matrix_mul([[1, 2]], [[3, [4]], ['5', 6]]) #doctest: +ELLIPSIS
     Traceback (most recent call last):
     ValueError...
