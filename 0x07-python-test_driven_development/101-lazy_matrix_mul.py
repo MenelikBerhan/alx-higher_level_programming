@@ -15,4 +15,4 @@ def lazy_matrix_mul(m_a, m_b):
     """
     # result = np.matmul(m_a, m_b)
 
-    return np.dot(np.ndarray(m_a), np.ndarray(m_b))
+    return np.dot(np.array(m_a), np.array(m_b))
