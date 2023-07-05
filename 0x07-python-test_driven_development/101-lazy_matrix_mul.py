@@ -13,8 +13,8 @@ def lazy_matrix_mul(m_a, m_b):
         m_b (`list` of `list` of `int`): second matrix\n
     Returns (`list` of `list` of `int`): the product
     """
-    # result = np.matmul(m_a, m_b)
+    result = np.matmul(m_a, m_b)
 
     # return np.dot(m_a, m_b, out=np.array)
 
-    return np.matmul(m_a, m_b)
+    return result
