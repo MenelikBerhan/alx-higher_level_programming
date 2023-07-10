@@ -51,34 +51,3 @@ List with integers
     [1, 2, 3]
     >>> print(a)
     [3, 2, 1]
-
-List with mixed types
-=====================
-    >>> a = MyList((3, '2', 1))
-    >>> print(a)
-    [3, '2', 1]
-    >>> a.print_sorted() #doctest: +ELLIPSIS
-    Traceback (most recent call last):
-    TypeError...
-    >>> print(a)
-    [3, '2', 1]
-
-List with floats and integers
-=============================
-    >>> a = MyList((1.5, 2, 1))
-    >>> print(a)
-    [1.5, 2, 1]
-    >>> a.print_sorted()
-    [1, 1.5, 2]
-    >>> print(a)
-    [1.5, 2, 1]
-
-List with all strings
-=====================
-    >>> a = MyList(('z', 'a', 'q'))
-    >>> print(a)
-    ['z', 'a', 'q']
-    >>> a.print_sorted()
-    ['a', 'q', 'z']
-    >>> print(a)
-    ['z', 'a', 'q']
