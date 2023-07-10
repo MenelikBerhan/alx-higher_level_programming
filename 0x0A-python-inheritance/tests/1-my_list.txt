@@ -1,0 +1,84 @@
+============================
+The ``1-my_list`` module
+============================
+
+Using ``text_indentation``
+-------------------
+Prototype: ``def text_indentation(text):``
+
+This is a test file in reStructuredText format.  First import
+``MyList`` class from the ``1-my_list`` module:
+
+    >>> MyList = __import__('1-my_list').MyList
+
+Now test it for various cases:
+Empty list
+================
+    >>> a = MyList()
+    >>> print(a)
+    []
+    >>> a.print_sorted()
+    []
+    >>> print(a)
+    []
+
+Listy with only one emlement
+============================
+    >>> a = MyList((3,))
+    >>> print(a)
+    [3]
+    >>> a.print_sorted()
+    [3]
+    >>> print(a)
+    [3]
+
+List with all emlements equal to 0
+==================================
+    >>> a = MyList((0, 0, 0))
+    >>> print(a)
+    [0, 0, 0]
+    >>> a.print_sorted()
+    [0, 0, 0]
+    >>> print(a)
+    [0, 0, 0]
+
+List with integers
+==================
+    >>> a = MyList((3, 2, 1))
+    >>> print(a)
+    [3, 2, 1]
+    >>> a.print_sorted()
+    [1, 2, 3]
+    >>> print(a)
+    [3, 2, 1]
+
+List with mixed types
+=====================
+    >>> a = MyList((3, '2', 1))
+    >>> print(a)
+    [3, '2', 1]
+    >>> a.print_sorted() #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    TypeError...
+    >>> print(a)
+    [3, '2', 1]
+
+List with floats and integers
+=============================
+    >>> a = MyList((1.5, 2, 1))
+    >>> print(a)
+    [1.5, 2, 1]
+    >>> a.print_sorted()
+    [1, 1.5, 2]
+    >>> print(a)
+    [1.5, 2, 1]
+
+List with all strings
+=====================
+    >>> a = MyList(('z', 'a', 'q'))
+    >>> print(a)
+    ['z', 'a', 'q']
+    >>> a.print_sorted()
+    ['a', 'q', 'z']
+    >>> print(a)
+    ['z', 'a', 'q']
