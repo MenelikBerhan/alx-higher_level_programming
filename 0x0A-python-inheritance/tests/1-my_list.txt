@@ -2,19 +2,21 @@
 The ``1-my_list`` module
 ============================
 
-Using ``text_indentation``
--------------------
-Prototype: ``def text_indentation(text):``
-
+Using ``MyList``
+----------------
 This is a test file in reStructuredText format.  First import
 ``MyList`` class from the ``1-my_list`` module:
 
     >>> MyList = __import__('1-my_list').MyList
+    >>> print(type(MyList))
+    <class 'type'>
 
 Now test it for various cases:
 Empty list
 ================
     >>> a = MyList()
+    >>> print(type(a))
+    <class '1-my_list.MyList'>
     >>> print(a)
     []
     >>> a.print_sorted()

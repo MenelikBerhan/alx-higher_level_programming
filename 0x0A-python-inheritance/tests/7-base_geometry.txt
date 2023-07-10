@@ -1,0 +1,57 @@
+============================
+The ``7-base_geometry`` module
+============================
+
+Using ``BaseGeometry``
+----------------------
+
+This is a test file in reStructuredText format.  First import
+``BaseGeometry`` class from the ``7-base_geometry`` module:
+
+    >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+    >>> print(type(BaseGeometry))
+    <class 'type'>
+
+Now test it for various cases:
+Create an object
+================
+    >>> a = BaseGeometry()
+    >>> print(type(a) == BaseGeometry)
+    True
+
+Create an object with incorrect argument
+========================================
+    >>> a = BaseGeometry(12)  #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    TypeError...
+
+area method test
+================
+    >>> a = BaseGeometry()
+    >>> a.area()
+    Traceback (most recent call last):
+    Exception: area() is not implemented
+    >>> a.area(12)   #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    TypeError...
+
+integer_validator method test
+=============================
+    >>> a = BaseGeometry()
+    >>> print(a.integer_validator("a", 2))
+    None
+    >>> a.integer_validator("a", "2")
+    Traceback (most recent call last):
+    TypeError: a must be an integer
+    >>> a.integer_validator("a", 0)
+    Traceback (most recent call last):
+    ValueError: a must be greater than 0
+    >>> a.integer_validator() #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    TypeError...
+    >>> a.integer_validator("p") #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    TypeError...
+    >>> a.integer_validator("p", 2, 3) #doctest: +ELLIPSIS
+    Traceback (most recent call last):
+    TypeError...
