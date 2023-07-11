@@ -4,12 +4,13 @@ The ``1-my_list`` module
 
 Using ``MyList``
 ----------------
-This is a test file in reStructuredText format.  First import
-``MyList`` class from the ``1-my_list`` module:
+This is a test file in reStructuredText format.
 
     >>> MyList = __import__('1-my_list').MyList
     >>> print(type(MyList))
     <class 'type'>
+    >>> issubclass(MyList, list)
+    True
 
 Now test it for various cases:
 Empty list
@@ -17,6 +18,10 @@ Empty list
     >>> a = MyList()
     >>> print(type(a))
     <class '1-my_list.MyList'>
+    >>> isinstance(a, MyList)
+    True
+    >>> isinstance(a, list)
+    True
     >>> print(a)
     []
     >>> a.print_sorted()
@@ -24,7 +29,7 @@ Empty list
     >>> print(a)
     []
 
-Listy with only one emlement
+Listy with only one element
 ============================
     >>> a = MyList((3,))
     >>> print(a)
@@ -34,7 +39,7 @@ Listy with only one emlement
     >>> print(a)
     [3]
 
-List with all emlements equal to 0
+List with all elements equal to 0
 ==================================
     >>> a = MyList((0, 0, 0))
     >>> print(a)
@@ -110,6 +115,9 @@ List with improper arguments
     >>> a = MyList(4)
     Traceback (most recent call last):
     TypeError: 'int' object is not iterable
+    >>> a = MyList(None)
+    Traceback (most recent call last):
+    TypeError: 'NoneType' object is not iterable
 
 List with improper argument number
 ==================================
