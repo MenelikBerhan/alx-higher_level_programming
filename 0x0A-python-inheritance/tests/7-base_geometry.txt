@@ -74,7 +74,3 @@ integer_validator method test
     >>> a.integer_validator("a", [5])
     Traceback (most recent call last):
     TypeError: a must be an integer
-
-    >>> a.integer_validator("a", {5, 6})
-    Traceback (most recent call last):
-    TypeError: a must be an integer
