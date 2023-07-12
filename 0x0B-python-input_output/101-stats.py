@@ -10,9 +10,9 @@ try:
     status_dict = {}
     for line in sys.stdin:
         if count == 10:
-            print("File size: {:d}".format(total_size))
+            print("File size: {}".format(total_size))
             for k in sorted(status_dict.keys()):
-                print("{}: {:d}".format(k, status_dict[k]))
+                print("{}: {}".format(k, status_dict[k]))
             count = 0
         row = line.split()
         total_size += int(row[8])
@@ -20,9 +20,9 @@ try:
         status_dict[status] = status_dict.get(status, 0) + 1
         count += 1
 except KeyboardInterrupt:
-    out = "File size: {:d}\n".format(total_size)
+    out = "File size: {}\n".format(total_size)
     status = ""
     for k in sorted(status_dict.keys()):
-        status = status + "{}: {:d}\n".format(k, status_dict[k])
-    print(out + status, end="", flush=True)
+        status = status + "{}: {}\n".format(k, status_dict[k])
+    print(out + status, end="")
     raise
