@@ -15,23 +15,18 @@ try:
             print("File size: {}".format(total_size))
             for k in sorted(status_dict):
                 print("{}: {}".format(k, status_dict[k]))
-            count = 1
-        else:
-            count += 1
+            count = 0
+
+        count += 1
         row = line.split()
         try:
             total_size += int(row[-1])
         except (IndexError, ValueError):
             pass
-        # total_size += int(row[8])
-        # status = row[7]
-        # status_dict[status] = status_dict.get(status, 0) + 1
+
         try:
             if row[-2] in stat_codes:
-                if status_dict.get(row[-2], -1) == -1:
-                    status_dict[row[-2]] = 1
-                else:
-                    status_dict[row[-2]] += 1
+                status_dict[row[-2]] = status_dict.get(row[-2], 0) + 1
         except IndexError:
             pass
 
