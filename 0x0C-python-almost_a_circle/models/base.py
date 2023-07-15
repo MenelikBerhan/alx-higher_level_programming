@@ -40,7 +40,7 @@ class Base:
 
     @staticmethod
     def from_json_string(json_string):
-        """`list`: Returns the list of objects represented by the
+        """`list`: Returns the list of dictionaries represented by the
         `JSON` string representation `json_string`"""
         if json_string is None or len(json_string) == 0:
             return []
@@ -53,8 +53,12 @@ class Base:
         if dictionary is None:
             return None
         if cls.__name__ == "Rectangle":
+            if 'width' not in dictionary or 'height' not in dictionary:
+                raise AttributeError("Rectangle needs height and width")
             new_obj = cls(1, 1)
         elif cls.__name__ == "Square":
+            if 'size' not in dictionary:
+                raise AttributeError("Square needs size")
             new_obj = cls(1)
         new_obj.update(**dictionary)
         return new_obj
@@ -79,16 +83,13 @@ class Base:
         """Writes the `CSV` string representation of `list_objs` to a file
         named `<Class name>.csv`."""
         file_name = cls.__name__ + ".csv"
-        if list_objs is None:
-            with open(file_name, "w", encoding="utf-8") as file:
-                file.write("")
-        else:
-            list_vals = []
+        list_vals = []
+        if list_objs is not None:
             for obj in list_objs:
                 list_vals.append(obj.to_dictionary().values())
-            with open(file_name, "w", encoding="utf-8") as file:
-                write_file = csv.writer(file)
-                write_file.writerows(list_vals)
+        with open(file_name, "w", encoding="utf-8") as file:
+            write_file = csv.writer(file)
+            write_file.writerows(list_vals)
 
     @classmethod
     def load_from_file_csv(cls):
@@ -103,9 +104,14 @@ class Base:
             list_objs = []
             for row in list_vals:
                 if cls.__name__ == "Rectangle":
+                    if len(row) < 2:
+                        raise AttributeError("Rectangle needs 2 attributes")
                     obj = cls(1, 1)
                 elif cls.__name__ == "Square":
+                    if len(row) < 1:
+                        raise AttributeError("Square needs 1 attribute")
                     obj = cls(1)
+
                 obj.update(*list(map(int, row)))
                 list_objs.append(obj)
             return list_objs
