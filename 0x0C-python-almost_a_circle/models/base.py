@@ -30,7 +30,6 @@ class Base:
     def save_to_file(cls, list_objs):
         """Writes the `JSON` string representation of `list_objs` to a file
         named `<Class name>.json`."""
-        # check if objs in list are of the same class and of class `cls`
         file_name = cls.__name__ + ".json"
         if list_objs is None:
             with open(file_name, "w", encoding="utf-8") as file:
@@ -54,13 +53,12 @@ class Base:
     def create(cls, **dictionary):
         """`cls`: Returns an instance of `cls` with attributes set
         from key word arguments in `dictionary`"""
-        if dictionary is None:  # checks: if mandatory attrs, valid attrs?
+        if dictionary is None:
             return None
-        # if cls.__name__ == "Rectangle":
-        #     new_obj = cls(1, 1)
-        # elif cls.__name__ == "Square":
-        #     new_obj = cls(1)
-        new_obj = cls(1, 1)
+        if cls.__name__ == "Rectangle":
+            new_obj = cls(1, 1)
+        elif cls.__name__ == "Square":
+            new_obj = cls(1)
         new_obj.update(**dictionary)
         return new_obj
 
@@ -75,7 +73,7 @@ class Base:
             return []
         else:
             list_objs = []
-            for dict_ in list_dicts:  # check for valid dict_?
+            for dict_ in list_dicts:
                 list_objs.append(cls.create(**dict_))
             return list_objs
 
@@ -83,7 +81,6 @@ class Base:
     def save_to_file_csv(cls, list_objs):
         """Writes the `CSV` string representation of `list_objs` to a file
         named `<Class name>.csv`."""
-        # check if objs in list are of the same class and of class `cls`?
         file_name = cls.__name__ + ".csv"
         if list_objs is None:
             with open(file_name, "w", encoding="utf-8") as file:
@@ -107,8 +104,11 @@ class Base:
             return []
         else:
             list_objs = []
-            for row in list_vals:  # check for valid values?
-                obj = cls(1, 1)
+            for row in list_vals:
+                if cls.__name__ == "Rectangle":
+                    obj = cls(1, 1)
+                elif cls.__name__ == "Square":
+                    obj = cls(1)
                 obj.update(*list(map(int, row)))
                 list_objs.append(obj)
             return list_objs

@@ -34,10 +34,10 @@ class Square(Rectangle):
         """Updates instance attribute values. Arguments passed are assumed
         to be in `id`, `size`, `x`, `y` sequence for `*args`"""
         # if more than 4 arguments don't update any argument
-        # if len(args) > 4:
-        #     raise AttributeError("Square object has only 4 attributes")
+        if len(args) > 4:
+            raise AttributeError("Square object has only 4 attributes")
 
-        # err_msg = "Square object doesn't have an attribute named "
+        err_msg = "Square object doesn't have an attribute named "
         attributes = ["id", "size", "x", "y"]
 
         if args is not None and len(args) > 0:
@@ -45,9 +45,9 @@ class Square(Rectangle):
                 exec("self." + attributes[i] + " = " + str(arg))
         else:
             # if any attribute is unknown don't update any argument
-            # for attr in kwargs:
-            #     if attr not in attributes:
-            #         raise AttributeError(err_msg + "'{}'".format(attr))
+            for attr in kwargs:
+                if attr not in attributes:
+                    raise AttributeError(err_msg + "'{}'".format(attr))
             for attr, arg in kwargs.items():
                 exec("self." + attr + " = " + str(arg))
 

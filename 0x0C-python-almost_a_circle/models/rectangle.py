@@ -108,10 +108,10 @@ class Rectangle(Base):
         """Updates instance attribute values. Arguments passed are assumed
         to be in `id`, `width`, `height`, `x`, `y` sequence for `*args`"""
         # if more than 5 arguments don't update any argument
-        # if len(args) > 5:
-        #     raise AttributeError("Rectangle object has only 5 attributes")
+        if len(args) > 5:
+            raise AttributeError("Rectangle object has only 5 attributes")
 
-        # err_msg = "Rectangle object doesn't have an attribute named "
+        err_msg = "Rectangle object doesn't have an attribute named "
         attributes = ["id", "width", "height", "x", "y"]
 
         if args is not None and len(args) > 0:
@@ -119,9 +119,9 @@ class Rectangle(Base):
                 exec("self." + attributes[i] + " = " + str(arg))
         else:
             # if any attribute is unknown don't update any argument
-            # for attr in kwargs:
-            #     if attr not in attributes:
-            #         raise AttributeError(err_msg + "'{}'".format(attr))
+            for attr in kwargs:
+                if attr not in attributes:
+                    raise AttributeError(err_msg + "'{}'".format(attr))
             for attr, arg in kwargs.items():
                 exec("self." + attr + " = " + str(arg))
 
