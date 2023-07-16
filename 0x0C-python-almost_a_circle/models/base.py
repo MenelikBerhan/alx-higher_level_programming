@@ -2,6 +2,7 @@
 """Module containing `Base` class"""
 import json
 import csv
+import turtle
 
 
 class Base:
@@ -115,3 +116,26 @@ class Base:
                 obj.update(*list(map(int, row)))
                 list_objs.append(obj)
             return list_objs
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """Opens a window and draws all the Rectangles and Squares"""
+        ttl = turtle.Turtle()
+        ttl.up()
+        for rect in list_rectangles:
+            ttl.goto(rect.x, rect.y)
+            ttl.down()
+            for _ in range(2):
+                ttl.forward(rect.width)
+                ttl.right(90)
+                ttl.forward(rect.height)
+                ttl.right(90)
+            ttl.up()
+
+        for sqr in list_squares:
+            ttl.goto(sqr.x, sqr.y)
+            ttl.down()
+            for _ in range(4):
+                ttl.forward(sqr.size)
+                ttl.right(90)
+            ttl.up()
