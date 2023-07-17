@@ -90,12 +90,13 @@ class TestRectangle(unittest.TestCase):
 
     def test_nb_objects(self):
         "Test for nb_objects private class attribute"
-        self.assertTrue(hasattr(Rectangle, "_Base__nb_objects"))
         self.assertTrue("_Base__nb_objects" in dir(Rectangle))
         self.assertTrue(all(["_Base__nb_objects" in dir(x) for x in
                              [self.a, self.b, self.c, self.d]]))
         with self.assertRaises(AttributeError) as e:
             Rectangle.__nb_objects == 3
+        self.assertEqual(getattr(Rectangle, "_Base__nb_objects"), self.d.id)
+        self.assertEqual(getattr(Base, "_Base__nb_objects"), self.d.id)
 
     def test_private_attributes(self):
         """Tests private attributes width, height, x and y"""
