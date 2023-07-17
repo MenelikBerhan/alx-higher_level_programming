@@ -43,6 +43,7 @@ class TestBase(unittest.TestCase):
 
     def test_nb_objects(self):
         """Test for nb_objects private class attribute"""
+        self.assertTrue(hasattr(Base, "_Base__nb_objects"))
         self.assertTrue("_Base__nb_objects" in dir(Base))
         self.assertTrue(all(["_Base__nb_objects" in dir(x) for x in
                              [self.a, self.b, self.c, self.d]]))
