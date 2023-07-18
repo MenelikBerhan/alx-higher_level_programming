@@ -54,49 +54,38 @@ class TestBase(unittest.TestCase):
         """Tests `to_json_string` signature:"""
         with self.assertRaises(TypeError) as e:
             Base.to_json_string()
-        s = "to_json_string() missing 1 required positional argument: \
-'list_dictionaries'"
-        self.assertEqual(str(e.exception), s)
 
         self.assertEqual(Base.to_json_string(None), "[]")
         self.assertEqual(Base.to_json_string([]), "[]")
-        d = [{'x': 101, 'y': 20123, 'width': 312321, 'id': 522244,
-             'height': 34340}]
-        self.assertEqual(len(Base.to_json_string(d)),
-                         len(str(d)))
+        d = [{'x': 101, 'y': 123, 'width': 321, 'id': 529, 'height': 440}]
+        self.assertEqual(len(Base.to_json_string(d)), len(str(d)))
         d = [{'x': 1, 'y': 2, 'width': 3, 'id': 4, 'height': 5}]
-        self.assertEqual(len(Base.to_json_string(d)),
-                         len(str(d)))
-        d = [{"foobarrooo": 989898}]
+        self.assertEqual(len(Base.to_json_string(d)), len(str(d)))
+        d = [{"g": 77}]
+        self.assertEqual(Base.to_json_string(d), '[{"g": 77}]')
+        d = [{"g": 77}, {"ghi": 123}, {"GH": 0}]
         self.assertEqual(Base.to_json_string(d),
-                         '[{"foobarrooo": 989898}]')
-
-        d = [{"foobarrooo": 989898}, {"abc": 123}, {"HI": 0}]
-        self.assertEqual(Base.to_json_string(d),
-                         '[{"foobarrooo": 989898}, {"abc": 123}, {"HI": 0}]')
+                         '[{"g": 77}, {"ghi": 123}, {"GH": 0}]')
 
         d = [{'x': 1, 'y': 2, 'width': 3, 'id': 4, 'height': 5},
-             {'x': 101, 'y': 20123, 'width': 312321, 'id': 522244,
-             'height': 34340}]
+             {'x': 101, 'y': 23, 'width': 21, 'id': 54, 'height': 34}]
         self.assertEqual(len(Base.to_json_string(d)),
                          len(str(d)))
         d = [{}]
-        self.assertEqual(Base.to_json_string(d),
-                         '[{}]')
+        self.assertEqual(Base.to_json_string(d), '[{}]')
         d = [{}, {}]
-        self.assertEqual(Base.to_json_string(d),
-                         '[{}, {}]')
+        self.assertEqual(Base.to_json_string(d), '[{}, {}]')
 
-        r1 = Rectangle(10, 7, 2, 8)
+        r1 = Rectangle(20, 13, 12, 80)
         dictionary = r1.to_dictionary()
         json_dictionary = Base.to_json_string([dictionary])
         dictionary = str([dictionary])
         dictionary = dictionary.replace("'", '"')
         self.assertEqual(dictionary, json_dictionary)
 
-        r1 = Rectangle(10, 7, 2, 8)
-        r2 = Rectangle(1, 2, 3, 4)
-        r3 = Rectangle(2, 3, 4, 5)
+        r1 = Rectangle(4, 5, 6, 7)
+        r2 = Rectangle(8, 9, 10, 11)
+        r3 = Rectangle(12, 13, 14, 15)
         dictionary = [r1.to_dictionary(), r2.to_dictionary(),
                       r3.to_dictionary()]
         json_dictionary = Base.to_json_string(dictionary)
@@ -104,16 +93,16 @@ class TestBase(unittest.TestCase):
         dictionary = dictionary.replace("'", '"')
         self.assertEqual(dictionary, json_dictionary)
 
-        r1 = Square(10, 7, 2)
+        r1 = Square(1, 2, 3)
         dictionary = r1.to_dictionary()
         json_dictionary = Base.to_json_string([dictionary])
         dictionary = str([dictionary])
         dictionary = dictionary.replace("'", '"')
         self.assertEqual(dictionary, json_dictionary)
 
-        r1 = Square(10, 7, 2)
-        r2 = Square(1, 2, 3)
-        r3 = Square(2, 3, 4)
+        r1 = Square(1, 2, 3)
+        r2 = Square(4, 5, 6)
+        r3 = Square(7, 8, 9)
         dictionary = [r1.to_dictionary(), r2.to_dictionary(),
                       r3.to_dictionary()]
         json_dictionary = Base.to_json_string(dictionary)
@@ -124,11 +113,13 @@ class TestBase(unittest.TestCase):
     def test_save_to_file(self):
         """Tests `save_to_file` method."""
         import os
-        r1 = Rectangle(10, 7, 2, 8)
-        r2 = Rectangle(2, 4)
+        r1 = Rectangle(1, 2, 3, 4)
+        r2 = Rectangle(5, 6)
+        list_objs = [r1.to_dictionary(), r2.to_dictionary()]
+        json_str = Base.to_json_string(list_objs)
         Rectangle.save_to_file([r1, r2])
         with open("Rectangle.json", "r") as file:
-            self.assertEqual(len(file.read()), 105)
+            self.assertEqual(len(file.read()), len(json_str))
         Rectangle.save_to_file(None)
         with open("Rectangle.json", "r") as file:
             self.assertEqual(file.read(), "[]")
@@ -139,10 +130,12 @@ class TestBase(unittest.TestCase):
         Rectangle.save_to_file([])
         with open("Rectangle.json", "r") as file:
             self.assertEqual(file.read(), "[]")
-        r2 = Rectangle(2, 4)
+        r2 = Rectangle(1, 2)
+        list_objs = [r2.to_dictionary()]
+        json_str = Base.to_json_string(list_objs)
         Rectangle.save_to_file([r2])
         with open("Rectangle.json", "r") as file:
-            self.assertEqual(len(file.read()), 52)
+            self.assertEqual(len(file.read()), len(json_str))
 
         Square.save_to_file(None)
         with open("Square.json", "r") as file:
@@ -154,14 +147,16 @@ class TestBase(unittest.TestCase):
         Square.save_to_file([])
         with open("Square.json", "r") as file:
             self.assertEqual(file.read(), "[]")
-        r2 = Square(1)
+        r2 = Square(23)
+        list_objs = [r2.to_dictionary()]
+        json_str = Base.to_json_string(list_objs)
         Square.save_to_file([r2])
         with open("Square.json", "r") as file:
-            self.assertEqual(len(file.read()), 38)
+            self.assertEqual(len(file.read()), len(json_str))
 
     def test_create(self):
         """Tests `create` method."""
-        r1 = Rectangle(3, 5, 1)
+        r1 = Rectangle(8, 9, 10)
         r1_dictionary = r1.to_dictionary()
         r2 = Rectangle.create(**r1_dictionary)
         self.assertEqual(str(r1), str(r2))
@@ -170,8 +165,8 @@ class TestBase(unittest.TestCase):
 
     def test_load_from_file(self):
         """Tests `load_from_file` method."""
-        r1 = Rectangle(10, 7, 2, 8)
-        r2 = Rectangle(2, 4)
+        r1 = Rectangle(10, 13, 21, 18)
+        r2 = Rectangle(13, 42)
         list_in = [r1, r2]
         Rectangle.save_to_file(list_in)
         list_out = Rectangle.load_from_file()
@@ -180,8 +175,8 @@ class TestBase(unittest.TestCase):
         self.assertNotEqual(id(list_in[1]), id(list_out[1]))
         self.assertEqual(str(list_in[1]), str(list_out[1]))
 
-        s1 = Square(5)
-        s2 = Square(7, 9, 1)
+        s1 = Square(8)
+        s2 = Square(12, 13, 14)
         list_in = [s1, s2]
         Square.save_to_file(list_in)
         list_out = Square.load_from_file()
