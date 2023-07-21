@@ -54,11 +54,23 @@ class TestSquare(unittest.TestCase):
         except TypeError as e:
             self.assertIn("x must be an integer", e.args)
         try:
+            m = Square(1, 2, '3')
+        except TypeError as e:
+            self.assertIn("y must be an integer", e.args)
+        try:
             m = Square(1, 2, '3', '4')
         except TypeError as e:
             self.assertIn("y must be an integer", e.args)
         try:
+            m = Square(0)
+        except ValueError as e:
+            self.assertIn("width must be > 0", e.args)
+        try:
             m = Square(0, 1, 2, 3)
+        except ValueError as e:
+            self.assertIn("width must be > 0", e.args)
+        try:
+            m = Square(-1)
         except ValueError as e:
             self.assertIn("width must be > 0", e.args)
         try:
@@ -66,11 +78,19 @@ class TestSquare(unittest.TestCase):
         except ValueError as e:
             self.assertIn("width must be > 0", e.args)
         try:
+            m = Square(1, -2)
+        except ValueError as e:
+            self.assertIn("x must be >= 0", e.args)
+        try:
             m = Square(1, -1, 2, 3)
         except ValueError as e:
             self.assertIn("x must be >= 0", e.args)
         try:
             m = Square(1, 2, -1, 3)
+        except ValueError as e:
+            self.assertIn("y must be >= 0", e.args)
+        try:
+            m = Square(1, 2, -3)
         except ValueError as e:
             self.assertIn("y must be >= 0", e.args)
 
