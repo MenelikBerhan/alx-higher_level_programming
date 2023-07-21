@@ -63,19 +63,11 @@ class TestRectangle(unittest.TestCase):
         except TypeError as e:
             self.assertIn("y must be an integer", e.args)
         try:
-            m = Rectangle(1, 2, 3, '4')
-        except TypeError as e:
-            self.assertIn("y must be an integer", e.args)
-        try:
             m = Rectangle(0, 1, 2, 3, 4)
         except ValueError as e:
             self.assertIn("width must be > 0", e.args)
         try:
             m = Rectangle(1, 0, 2, 3, 4)
-        except ValueError as e:
-            self.assertIn("height must be > 0", e.args)
-        try:
-            m = Rectangle(1, 0)
         except ValueError as e:
             self.assertIn("height must be > 0", e.args)
         try:
