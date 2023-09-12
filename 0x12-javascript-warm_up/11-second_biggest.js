@@ -5,18 +5,18 @@ if (process.argv.length <= 3) {
   let biggest;
   let secondBiggest;
   if (process.argv[2] > process.argv[3]) {
-    biggest = process.argv[2];
-    secondBiggest = process.argv[3];
+    biggest = parseInt(process.argv[2]);
+    secondBiggest = parseInt(process.argv[3]);
   } else {
-    biggest = process.argv[3];
-    secondBiggest = process.argv[2];
+    biggest = parseInt(process.argv[3]);
+    secondBiggest = parseInt(process.argv[2]);
   }
   for (let i = 4; i < process.argv.length; i++) {
-    if (process.argv[i] >= biggest) {
+    if (parseInt(process.argv[i]) >= biggest) {
       secondBiggest = biggest;
-      biggest = process.argv[i];
-    } else if (process.argv[i] > secondBiggest) {
-      secondBiggest = process.argv[i];
+      biggest = parseInt(process.argv[i]);
+    } else if (parseInt(process.argv[i]) > secondBiggest) {
+      secondBiggest = parseInt(process.argv[i]);
     }
   }
   console.log(secondBiggest);
