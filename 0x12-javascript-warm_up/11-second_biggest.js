@@ -12,7 +12,7 @@ if (process.argv.length <= 3) {
     secondBiggest = process.argv[2];
   }
   for (let i = 4; i < process.argv.length; i++) {
-    if (process.argv[i] > biggest) {
+    if (process.argv[i] >= biggest) {
       secondBiggest = biggest;
       biggest = process.argv[i];
     } else if (process.argv[i] > secondBiggest) {
