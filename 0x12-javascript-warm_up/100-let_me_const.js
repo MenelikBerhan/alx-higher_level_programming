@@ -1,2 +1,2 @@
 #!/usr/bin/node
-exports.myvar = 333;
+global.myVar = 333;
