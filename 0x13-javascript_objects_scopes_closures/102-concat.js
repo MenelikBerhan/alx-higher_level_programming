@@ -1,6 +1,5 @@
 #!/usr/bin/node
 const fs = require('fs');
-console.log('./' + process.argv[2]);
 fs.readFile(process.argv[2],
   // callback function that is called when reading file is done
   function (err, data) {
