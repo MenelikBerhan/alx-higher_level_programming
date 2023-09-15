@@ -10,7 +10,7 @@ if __name__ == "__main__":
     cur = db.cursor()
     no_rows = cur.execute("""SELECT c.name FROM cities c
                           INNER JOIN states s ON c.state_id = s.id
-                          WHERE BINARY s.name=%s ORDER BY c.id""",
+                          WHERE s.name = BINARY %s ORDER BY c.id""",
                           (sys.argv[4],))
     rows = cur.fetchall()
     for i, row in enumerate(rows):
