@@ -17,7 +17,7 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
     for state in session.query(State).filter(
-            State.name.contains(func.binary('A'))).order_by(State.id):
+            State.name.contains(func.binary('a'))).order_by(State.id):
         # if str(state.name).find('a') != -1:
         #     print("{}: {}".format(state.id, state.name))
         print("{}: {}".format(state.id, state.name))
