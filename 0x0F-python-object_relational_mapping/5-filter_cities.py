@@ -14,6 +14,7 @@ if __name__ == "__main__":
                           (sys.argv[4],))
     rows = cur.fetchall()
     for i, row in enumerate(rows):
-        print(row[0], end='\n' if i == len(rows) - 1 else ', ')
+        print(row[0], end='' if i == len(rows) - 1 else ', ')
+    print()
     cur.close()
     db.close()
