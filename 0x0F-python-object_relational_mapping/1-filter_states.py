@@ -10,7 +10,7 @@ if __name__ == "__main__":
                              passwd=sys.argv[2], db=sys.argv[3], port=3306)
         cur = db.cursor()
         no_rows = cur.execute("""SELECT * FROM states
-                            WHERE name LIKE 'N%' ORDER BY id""")
+                            WHERE name LIKE BINARY 'N%' ORDER BY id""")
         rows = cur.fetchall()
     except MySQLdb.Error as e:
         print("MySQL Error: %s" % str(e))
