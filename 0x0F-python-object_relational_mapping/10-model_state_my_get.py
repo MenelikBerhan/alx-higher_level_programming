@@ -18,6 +18,6 @@ if __name__ == "__main__":
     state = session.query(State.id).filter(
         State.name == func.binary(sys.argv[4])).first()
     if not state:
-        print("Nothing")
+        print("Not found")
     else:
         print(state.id)
