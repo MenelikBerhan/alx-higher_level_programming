@@ -3,7 +3,7 @@
 an instance Base = declarative_base()"""
 
 # from sqlalchemy import create_engine
-from sqlalchemy.orm import declarative_base
+from sqlalchemy import declarative_base
 from sqlalchemy import Column, Integer, String
 # engine = create_engine('mysql+mysqldb://root:Mysql%40alx1@localhost
 # :3306/hbtn_0e_6_usa')
